@@ -27,16 +27,14 @@ text(L(1) + .3, L(2) + .3, L(3) + .3, 'L');
 
 % Definizione piano
 
-% 1. Definizione punto nello spazio per il quale passa la retta
-% che vincola l' "inclinazione" del piano rispetto a Z
+% 1. Definizione punto nello spazio per il quale passa la retta che vincola l' "inclinazione" del piano rispetto a Z (da spiegare meglio)
 line = randi([0 -MIN_LIM], 1, 3);
 % 2. Ricavare la matrice Z: l*x+m*y+n*z=0 -> %z=-(l*x+m*y)/n
 [X, Y] = meshgrid(MIN_LIM:.25:MAX_LIM, MIN_LIM:.25:MAX_LIM);
 Z = -(line(1) * X + line(2) * Y)/line(3);
 surf(X, Y, Z, 'FaceAlpha', .25, 'EdgeColor', 'none');
 
-% Generazione triangoli e rette
-% -- vedere f6_line_3d --
+% Generazione triangoli e rette -- vedere f6_line_3d --
 
 % 1. Definizione punti
 %  a. Direzione
