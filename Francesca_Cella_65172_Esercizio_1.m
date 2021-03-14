@@ -4,14 +4,13 @@ clc
 
 MIN_LIM = -5;
 MAX_LIM = 10;
-STEP = .25;
 
 f = figure;
 hold on
 axis equal
-xlim([MIN_LIM * 2 MAX_LIM * 2])
-ylim([MIN_LIM * 2 MAX_LIM * 2])
-zlim([MIN_LIM * 2 MAX_LIM * 2])
+xlim([MIN_LIM * 1.5 MAX_LIM * 1.5])
+ylim([MIN_LIM * 1.5 MAX_LIM * 1.5])
+zlim([MIN_LIM * 1.5 MAX_LIM * 1.5])
 xlabel('X')
 ylabel('Y')
 zlabel('Z')
@@ -32,9 +31,9 @@ text(L(1) + .3, L(2) + .3, L(3) + .3, 'L');
 % che vincola l' "inclinazione" del piano rispetto a Z
 line = randi([0 -MIN_LIM], 1, 3);
 % 2. Ricavare la matrice Z: l*x+m*y+n*z=0 -> %z=-(l*x+m*y)/n
-[X, Y] = meshgrid(MIN_LIM:STEP:MAX_LIM, MIN_LIM:STEP:MAX_LIM);
+[X, Y] = meshgrid(MIN_LIM:.25:MAX_LIM, MIN_LIM:.25:MAX_LIM);
 Z = -(line(1) * X + line(2) * Y)/line(3);
-surf(X, Y, Z, 'FaceAlpha', STEP, 'EdgeColor', 'none');
+surf(X, Y, Z, 'FaceAlpha', .25, 'EdgeColor', 'none');
 
 % Generazione triangoli e rette
 % -- vedere f6_line_3d --
@@ -71,10 +70,10 @@ B1 = L + t1 * dir;
 B2 = L + t2 * dir;
 % Triangolo blu
 plot3(B1(1), B1(2), B1(3), '.b', 'MarkerSize', 6);
-text(B1(1) + .3, B1(2) + .3, B1(3) + .3, 'B');
+text(B1(1) + .3, B1(2) + .3, B1(3) + .3, 'B1');
 % Triangolo rosso
 plot3(B2(1), B2(2), B2(3), '.r', 'MarkerSize', 6);
-text(B2(1) + .3, B2(2) + .3, B2(3) + .3, 'B');
+text(B2(1) + .3, B2(2) + .3, B2(3) + .3, 'B2');
 % Retta
 t = [MIN_LIM * 10:.1:MAX_LIM];
 X = L(1) + t * dir(1);
@@ -92,10 +91,10 @@ C1 = L + t1 * dir;
 C2 = L + t2 * dir;
 % Triangolo blu
 plot3(C1(1), C1(2), C1(3), '.b', 'MarkerSize', 6);
-text(C1(1) + .3, C1(2) + .3, C1(3) + .3, 'C');
+text(C1(1) + .3, C1(2) + .3, C1(3) + .3, 'C1');
 % Triangolo rosso
 plot3(C2(1), C2(2), C2(3), '.r', 'MarkerSize', 6);
-text(C2(1) + .3, C2(2) + .3, C2(3) + .3, 'C');
+text(C2(1) + .3, C2(2) + .3, C2(3) + .3, 'C2');
 % Retta
 t = [MIN_LIM * 10:.1:MAX_LIM];
 X = L(1) + t * dir(1);
