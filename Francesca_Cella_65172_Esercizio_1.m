@@ -100,8 +100,8 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 %  Xc = L(1) + ((-L(3) + Zc) / dirC(3)) * dirC(1)
 %  Yc = L(2) + ((-L(3) + Zc) / dirC(3)) * dirC(2)
 % 3. Equazioni della retta
-% Xc - L(1) - ((-L(3) + Zc) / dirC(3)) * dirC(1) = 0
-% Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
+%  Xc - L(1) - ((-L(3) + Zc) / dirC(3)) * dirC(1) = 0
+%  Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
 % Il piano è espersso come ax + by + cz + d = 0
 % Mettere il tutto a sistema per trovare il punto di intersezione
 % Prova per A
