@@ -90,9 +90,8 @@ plot3(Xc, Yc, Zc, '--k');
 % 2. Definizione segmenti
 plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b', 'LineWidth', 1.5);
 
-% Intersezione piano e retta, prova per C
+% Intersezione piano e retta
 % La retta è espressa come x_i = x_iL + d_it, al variare di t
-% ---
 % Passaggio a forma cartesiana...
 % 1. Esplicitiamo t
 %  t = (-L(3) + Zc) / dirC(3)
@@ -105,11 +104,35 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 % Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
 % Il piano è espersso come ax + by + cz + d = 0
 % Mettere il tutto a sistema per trovare il punto di intersezione
+% Prova per A
+coeffp = [a b c];
+coeffrx = [1 0 -dirA(1)/dirA(3)];
+coeffry = [0 1 -dirA(2)/dirA(3)];
+coeff = [coeffrx coeffry coeffp];
+coeff = reshape(coeff, 3, 3);
+known = [-L(3)*dirA(1)/dirA(3) + L(1); -L(3)*dirA(2)/dirA(3) + L(2); -d];
+pA = coeff\known;
+plot3(pA(1), pA(2), pA(3), '.r', 'MarkerSize', 6);
+text(pA(1) + .3, pA(2) + .3, pA(3) + .3, 'A1');
+% Prova per B
+coeffp = [a b c];
+coeffrx = [1 0 -dirB(1)/dirB(3)];
+coeffry = [0 1 -dirB(2)/dirB(3)];
+coeff = [coeffrx coeffry coeffp];
+coeff = reshape(coeff, 3, 3);
+known = [-L(3)*dirB(1)/dirB(3) + L(1); -L(3)*dirB(2)/dirB(3) + L(2); -d];
+pB = coeff\known;
+plot3(pB(1), pB(2), pB(3), '.r', 'MarkerSize', 6);
+text(pB(1) + .3, pB(2) + .3, pB(3) + .3, 'B1');
+% Prova per C
 coeffp = [a b c];
 coeffrx = [1 0 -dirC(1)/dirC(3)];
 coeffry = [0 1 -dirC(2)/dirC(3)];
 coeff = [coeffrx coeffry coeffp];
 coeff = reshape(coeff, 3, 3);
-known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); d];
+known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); -d];
 pC = coeff\known;
 plot3(pC(1), pC(2), pC(3), '.r', 'MarkerSize', 6);
+text(pC(1) + .3, pC(2) + .3, pC(3) + .3, 'C1');
+
+plot3([pA(1) pB(1) pC(1) pA(1)], [pA(2) pB(2) pC(2) pA(2)], [pA(3) pB(3) pC(3) pA(3)], '-r', 'LineWidth', 1.5);
