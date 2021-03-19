@@ -96,6 +96,7 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 % Passaggio a forma cartesiana...
 % 1. Esplicitiamo t
 %  t = (-L(3) + Zc) / dirC(3)
+% Quindi in tutte le rette il coeff di Zc è c / dirC(3)
 % 2. Sostituiamo
 %  Xc = L(1) + ((-L(3) + Zc) / dirC(3)) * dirC(1)
 %  Yc = L(2) + ((-L(3) + Zc) / dirC(3)) * dirC(2)
@@ -104,7 +105,11 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 % Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
 % Il piano è espersso come ax + by + cz + d = 0
 % Mettere il tutto a sistema per trovare il punto di intersezione
-A = [1 0 dirC(1)/dirC(3); 0 1 dirC(2)/dirC(3); a b c]';
-b = [L(1) + L(3) * dirC(1) / dirC(3); L(2) + L(3) * dirC(1) / dirC(3); -d];
-x = A\b;
-plot3(x(1), x(2), x(3), '.r', 'MarkerSize', 6);
+coeffp = [a b c];
+coeffrx = [1 0 -dirC(1)/dirC(3)];
+coeffry = [0 1 -dirC(2)/dirC(3)];
+coeff = [coeffrx coeffry coeffp];
+coeff = reshape(coeff, 3, 3);
+known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); d];
+pC = coeff\known;
+plot3(pC(1), pC(2), pC(3), '.r', 'MarkerSize', 6);
