@@ -2,8 +2,7 @@ clear all
 close all
 clc
 
-MIN_LIM = -5;
-MAX_LIM = 10;
+CIRCLES = 10;
 
 shearing = [1 0 2; 0 1 0; 0 0 1];
 
@@ -12,9 +11,9 @@ f = figure;
 hold on
 axis equal
 
-xlim([MIN_LIM MAX_LIM])
-ylim([MIN_LIM MAX_LIM])
-zlim([MIN_LIM MAX_LIM])
+xlim([-2 4])
+ylim([-2 4])
+zlim([-2 4])
 
 xlabel('X')
 ylabel('Y')
@@ -26,7 +25,7 @@ quiver3(0,0,0,0,1,0,'Color','g','autoscale','off')
 quiver3(0,0,0,0,0,1,'Color','b','autoscale','off')
 
 % Definizione piano z = 1
-[X,Y] = meshgrid(MIN_LIM:.2:MAX_LIM, MIN_LIM:.2:MAX_LIM);
+[X,Y] = meshgrid(-2:.1:4, -2:.2:4);
 Z = ones(size(X));
 surf(X, Y, Z, 'FaceAlpha', 0.1, 'EdgeColor', 'none')
 
@@ -35,10 +34,10 @@ r = 1;
 theta = [-180:1:179];
 
 fsize = size(theta);
-factor = repmat([0:.1:.9], fsize(2) * MAX_LIM, 1);
+factor = repmat([0:.1:.9], fsize(2) * CIRCLES, 1);
  
-X = repmat(r * cosd(theta), MAX_LIM)';
-Y = repmat(r * sind(theta), MAX_LIM)';
+X = repmat(r * cosd(theta), CIRCLES)';
+Y = repmat(r * sind(theta), CIRCLES)';
 Z = ones(size(X)) .* factor;
 plot3(X, Y, Z, '--b');
 
