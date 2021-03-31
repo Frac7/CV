@@ -39,7 +39,7 @@ factor = repmat([0:.1:.9], fsize(2) * MAX_LIM, 1);
  
 X = repmat(r * cosd(theta), MAX_LIM)';
 Y = repmat(r * sind(theta), MAX_LIM)';
-Z = ones(size(X)) + factor;
+Z = ones(size(X)) .* factor;
 plot3(X, Y, Z, '--b');
 
 % Applicazione della trasformazione
