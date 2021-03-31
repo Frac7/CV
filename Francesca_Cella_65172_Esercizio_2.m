@@ -11,9 +11,9 @@ f = figure;
 hold on
 axis equal
 
-xlim([-2 4])
-ylim([-2 4])
-zlim([-2 4])
+xlim([-1.5 3.5])
+ylim([-1 3])
+zlim([0 2])
 
 xlabel('X')
 ylabel('Y')
@@ -39,7 +39,7 @@ factor = repmat([0:.1:1], fsize(2) * CIRCLES, 1);
 X = repmat(r * cosd(theta), CIRCLES)';
 Y = repmat(r * sind(theta), CIRCLES)';
 Z = ones(size(X)) .* factor;
-plot3(X, Y, Z, '--b');
+plot3(X, Y, Z, ' .b', 'MarkerSize', 3);
 
 % Applicazione della trasformazione
 X = reshape(X,[],1)';
@@ -48,4 +48,4 @@ Z = reshape(Z,[],1)';
 
 all = [X; Y; Z];
 all_shearing = shearing * all;
-plot3(all_shearing(1,:), all_shearing(2,:), all_shearing(3,:), '--r');
+plot3(all_shearing(1,:), all_shearing(2,:), all_shearing(3,:), '.r', 'MarkerSize', 3);
