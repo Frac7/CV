@@ -2,7 +2,7 @@ clear all
 close all
 clc
 
-CIRCLES = 10;
+CIRCLES = 11;
 
 shearing = [1 0 2; 0 1 0; 0 0 1];
 
@@ -34,7 +34,7 @@ r = 1;
 theta = [-180:1:179];
 
 fsize = size(theta);
-factor = repmat([0:.1:.9], fsize(2) * CIRCLES, 1);
+factor = repmat([0:.1:1], fsize(2) * CIRCLES, 1);
  
 X = repmat(r * cosd(theta), CIRCLES)';
 Y = repmat(r * sind(theta), CIRCLES)';
