@@ -25,7 +25,7 @@ quiver3(0,0,0,0,1,0,'Color','g','autoscale','off')
 quiver3(0,0,0,0,0,1,'Color','b','autoscale','off')
 
 % Definizione piano z = 1
-[X,Y] = meshgrid(-2:.1:4, -2:.2:4);
+[X,Y] = meshgrid(-1.5:.1:3.5, -1.5:.1:3.5);
 Z = ones(size(X));
 surf(X, Y, Z, 'FaceAlpha', 0.1, 'EdgeColor', 'none')
 
