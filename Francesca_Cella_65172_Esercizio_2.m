@@ -28,14 +28,21 @@ Z = ones(size(X));
 surf(X, Y, Z, 'FaceAlpha', 0.1, 'EdgeColor', 'none')
 
 % Definizione circonferenza
-r = 2;
+r = 1;
 theta = [-180:1:179];
-X = r * cosd(theta);
-Y = r * sind(theta);
-Z = ones(size(X));
+
+fsize = size(theta);
+factor = repmat([0:.5:4.5], fsize(2) * MAX_LIM, 1);
+ 
+X = repmat(r * cosd(theta), MAX_LIM)';
+Y = repmat(r * sind(theta), MAX_LIM)';
+Z = ones(size(X)) + factor;
 plot3(X, Y, Z, '--b');
 
+% Applicazione della trasformazione
 all = [X; Y; Z];
+rep_shearing = repmat(shearing, MAX_LIM);
 all_shearing = shearing * all;
 plot3(all_shearing(1,:), all_shearing(2,:), all_shearing(3,:), '--r');
+
 
