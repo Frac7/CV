@@ -8,11 +8,14 @@ MAX_LIM = 10;
 shearing = [1 0 2; 0 1 0; 0 0 1];
 
 f = figure;
+
 hold on
 axis equal
+
 xlim([MIN_LIM MAX_LIM])
 ylim([MIN_LIM MAX_LIM])
 zlim([MIN_LIM MAX_LIM])
+
 xlabel('X')
 ylabel('Y')
 zlabel('Z')
@@ -32,7 +35,7 @@ r = 1;
 theta = [-180:1:179];
 
 fsize = size(theta);
-factor = repmat([0:.5:4.5], fsize(2) * MAX_LIM, 1);
+factor = repmat([0:.1:.9], fsize(2) * MAX_LIM, 1);
  
 X = repmat(r * cosd(theta), MAX_LIM)';
 Y = repmat(r * sind(theta), MAX_LIM)';
@@ -40,9 +43,10 @@ Z = ones(size(X)) + factor;
 plot3(X, Y, Z, '--b');
 
 % Applicazione della trasformazione
+X = reshape(X,[],1)';
+Y = reshape(Y,[],1)';
+Z = reshape(Z,[],1)';
+
 all = [X; Y; Z];
-rep_shearing = repmat(shearing, MAX_LIM);
 all_shearing = shearing * all;
 plot3(all_shearing(1,:), all_shearing(2,:), all_shearing(3,:), '--r');
-
-
