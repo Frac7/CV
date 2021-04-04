@@ -97,6 +97,7 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 % 3. Equazioni della retta
 %  Xc - L(1) - ((-L(3) + Zc) / dirC(3)) * dirC(1) = 0
 %  Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
+% Il piano è espersso come ax + by + cz + d = 0
 
 coeffp = [a b c];
 knownp = [-d];
@@ -112,9 +113,6 @@ pB = coeff\known;
 coeff = [1 0 -dirC(1)/dirC(3); 0 1 -dirC(2)/dirC(3); coeffp];
 known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); knownp];
 pC = coeff\known;
-
-% Il piano è espersso come ax + by + cz + d = 0
-% Sostituzione nell'equazione del piano
 
 plot3(pA(1), pA(2), pA(3), '.r', 'MarkerSize', 6);
 text(pA(1) + .3, pA(2) + .3, pA(3) + .3, 'A1');
