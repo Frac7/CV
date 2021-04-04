@@ -24,8 +24,6 @@ quiver3(0,0,0,0,0,1,'Color','b','autoscale','off')
 
 % 1. Equazione cartesiana del piano
 n = [.5 0 1];
-n = n/norm(n);
-quiver3(0,0,0,n(1),n(2),n(3),'Color','r','autoscale','off')
 a = n(1); 
 b = n(2); 
 c = n(3);
@@ -44,7 +42,6 @@ text(L(1) + .3, L(2) + .3, L(3) + .3, 'L');
 % 1. Definizione punti
 %  a. Direzione
 dirA = [0 1 1];
-dirA = dirA ./ norm(dirA);
 %  b. Parametro t
 t = -3.5;
 A = L + t * dirA;
@@ -59,7 +56,6 @@ plot3(Xa, Ya, Za, '--k');
 
 %  a. Direzione
 dirB = [1 .75 1];
-dirB = dirB ./ norm(dirB);
 %  b. Parametro t
 t = -4.25;
 B = L + t * dirB;
@@ -74,7 +70,6 @@ plot3(Xb, Yb, Zb, '--k');
 
 %  a. Direzione
 dirC = [.5 0 .75];
-dirC = dirC ./ norm(dirC);
 %  b. Parametro t
 t = -2.75;
 C = L + t * dirC;
@@ -102,36 +97,31 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 % 3. Equazioni della retta
 %  Xc - L(1) - ((-L(3) + Zc) / dirC(3)) * dirC(1) = 0
 %  Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
-% Il piano è espersso come ax + by + cz + d = 0
-% Mettere il tutto a sistema per trovare il punto di intersezione
-% Prova per A
-coeffp = [a b c];
-coeffrx = [1 0 -dirA(1)/dirA(3)];
-coeffry = [0 1 -dirA(2)/dirA(3)];
-coeff = [coeffrx coeffry coeffp];
-coeff = reshape(coeff, 3, 3);
-known = [-L(3)*dirA(1)/dirA(3) + L(1); -L(3)*dirA(2)/dirA(3) + L(2); -d];
+
+coeff = [1 0 -dirA(1)/dirA(3); 0 1 -dirA(2)/dirA(3)];
+known = [(-L(3)*dirA(1))/dirA(3) + L(1); (-L(3)*dirA(2))/dirA(3) + L(2)];
 pA = coeff\known;
+
+coeff = [1 0 -dirB(1)/dirB(3); 0 1 -dirB(2)/dirB(3)];
+known = [-L(3)*dirB(1)/dirB(3) + L(1); -L(3)*dirB(2)/dirB(3) + L(2)];
+pB = coeff\known;
+
+coeff = [1 0 -dirC(1)/dirC(3); 0 1 -dirC(2)/dirC(3)];
+known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2)];
+pC = coeff\known;
+
+% Il piano è espersso come ax + by + cz + d = 0
+% Sostituzione nell'equazione del piano
+
+param = -d/-(a + b + c);
+
+% Sostituzione di param al posto di t nelle rette
+% Si ottengono i punti di intersezione col piano
+
 plot3(pA(1), pA(2), pA(3), '.r', 'MarkerSize', 6);
 text(pA(1) + .3, pA(2) + .3, pA(3) + .3, 'A1');
-% Prova per B
-coeffp = [a b c];
-coeffrx = [1 0 -dirB(1)/dirB(3)];
-coeffry = [0 1 -dirB(2)/dirB(3)];
-coeff = [coeffrx coeffry coeffp];
-coeff = reshape(coeff, 3, 3);
-known = [-L(3)*dirB(1)/dirB(3) + L(1); -L(3)*dirB(2)/dirB(3) + L(2); -d];
-pB = coeff\known;
 plot3(pB(1), pB(2), pB(3), '.r', 'MarkerSize', 6);
 text(pB(1) + .3, pB(2) + .3, pB(3) + .3, 'B1');
-% Prova per C
-coeffp = [a b c];
-coeffrx = [1 0 -dirC(1)/dirC(3)];
-coeffry = [0 1 -dirC(2)/dirC(3)];
-coeff = [coeffrx coeffry coeffp];
-coeff = reshape(coeff, 3, 3);
-known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); -d];
-pC = coeff\known;
 plot3(pC(1), pC(2), pC(3), '.r', 'MarkerSize', 6);
 text(pC(1) + .3, pC(2) + .3, pC(3) + .3, 'C1');
 
