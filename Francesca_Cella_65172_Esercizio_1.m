@@ -98,25 +98,23 @@ plot3([A(1) B(1) C(1) A(1)], [A(2) B(2) C(2) A(2)], [A(3) B(3) C(3) A(3)], '-b',
 %  Xc - L(1) - ((-L(3) + Zc) / dirC(3)) * dirC(1) = 0
 %  Yc - L(2) - ((-L(3) + Zc) / dirC(3)) * dirC(2) = 0
 
-coeff = [1 0 -dirA(1)/dirA(3); 0 1 -dirA(2)/dirA(3)];
-known = [(-L(3)*dirA(1))/dirA(3) + L(1); (-L(3)*dirA(2))/dirA(3) + L(2)];
+coeffp = [a b c];
+knownp = [-d];
+
+coeff = [1 0 -dirA(1)/dirA(3); 0 1 -dirA(2)/dirA(3); coeffp];
+known = [(-L(3)*dirA(1))/dirA(3) + L(1); (-L(3)*dirA(2))/dirA(3) + L(2); knownp];
 pA = coeff\known;
 
-coeff = [1 0 -dirB(1)/dirB(3); 0 1 -dirB(2)/dirB(3)];
-known = [-L(3)*dirB(1)/dirB(3) + L(1); -L(3)*dirB(2)/dirB(3) + L(2)];
+coeff = [1 0 -dirB(1)/dirB(3); 0 1 -dirB(2)/dirB(3); coeffp];
+known = [-L(3)*dirB(1)/dirB(3) + L(1); -L(3)*dirB(2)/dirB(3) + L(2); knownp];
 pB = coeff\known;
 
-coeff = [1 0 -dirC(1)/dirC(3); 0 1 -dirC(2)/dirC(3)];
-known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2)];
+coeff = [1 0 -dirC(1)/dirC(3); 0 1 -dirC(2)/dirC(3); coeffp];
+known = [-L(3)*dirC(1)/dirC(3) + L(1); -L(3)*dirC(2)/dirC(3) + L(2); knownp];
 pC = coeff\known;
 
 % Il piano è espersso come ax + by + cz + d = 0
 % Sostituzione nell'equazione del piano
-
-param = -d/-(a + b + c);
-
-% Sostituzione di param al posto di t nelle rette
-% Si ottengono i punti di intersezione col piano
 
 plot3(pA(1), pA(2), pA(3), '.r', 'MarkerSize', 6);
 text(pA(1) + .3, pA(2) + .3, pA(3) + .3, 'A1');
