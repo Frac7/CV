@@ -65,7 +65,7 @@ h = d + factor;
 
 worldCube = [a; b; c; d; a; e; f; g; h; e; h; d; c; g; f; b];
 
-f = figure;
+figure;
 
 photos = size(imageFileNames, 2);
 
