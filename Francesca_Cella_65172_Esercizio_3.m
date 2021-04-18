@@ -46,9 +46,6 @@ worldPoints = generateCheckerboardPoints(boardSize, squareSize);
 R = cameraParams.RotationMatrices;
 t = cameraParams.TranslationVectors;
 
-z = zeros(size(worldPoints, 1));
-worldPoints = [worldPoints z];
-
 edge = 75;
 
 a = [0 0 0];
