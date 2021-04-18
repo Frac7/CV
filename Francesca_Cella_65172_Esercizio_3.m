@@ -46,7 +46,7 @@ worldPoints = generateCheckerboardPoints(boardSize, squareSize);
 R = cameraParams.RotationMatrices;
 t = cameraParams.TranslationVectors;
 
-z = zeros(size(worldPoints,1));
+z = zeros(size(worldPoints, 1));
 worldPoints = [worldPoints z];
 
 edge = 75;
@@ -67,8 +67,7 @@ worldCube = [a; b; c; d; a; e; f; g; h; e; h; d; c; g; f; b];
 
 f = figure;
 
-photos = size(imageFileNames);
-photos = photos(2);
+photos = size(imageFileNames, 2);
 
 for i = 1:photos
     imshow(imageFileNames{i})
@@ -76,6 +75,5 @@ for i = 1:photos
 
     imgCube = worldToImage(cameraParams,R(:,:,i),t(i,:), worldCube);
     plot(imgCube(:,1), imgCube(:,2), '-y', 'LineWidth', 1.5);
-    %saveas(f, sprintf('./Result/%d.png',i))
     pause
 end
