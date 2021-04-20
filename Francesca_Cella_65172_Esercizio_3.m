@@ -67,7 +67,8 @@ figure;
 photos = size(imageFileNames, 2);
 
 for i = 1:photos
-    imshow(imageFileNames{i})
+    undistortedImage = undistortImage(imread(imageFileNames{i}), cameraParams);
+    imshow(undistortedImage)
     hold on
 
     imgCube = worldToImage(cameraParams,R(:,:,i),t(i,:), worldCube);
